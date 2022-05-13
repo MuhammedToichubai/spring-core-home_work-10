@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <context:component-scan base-package="peaksoft"/>
+
+    <context:property-placeholder location="application.properties"/>
+
+    <bean id = "donkey" class="peaksoft.models.Donkey" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="breed" value="${donkey.breed}"/>
+        <property name="color" value="${donkey.color}"/>
+        <property name="age" value="${donkey.age}"/>
+    </bean>
+    <bean  id = "horse" class="peaksoft.models.Horse" init-method="animalPlus" destroy-method="animalMinus">
+        <property name="breed" value="${horse.breed}"/>
+        <property name="color" value="${horse.color}"/>
+        <property name="age" value="${horse.age}"/>
+    </bean>
+
+    <bean id="personOne" class="peaksoft.models.Person">
+        <property name="name" value="${person1.name}"/>
+        <property name="age" value="${person1.age}"/>
+        <property name="favoriteAnimal" ref="horse"/>
+
+    </bean>
+
+    <bean id="personTwo" class="peaksoft.models.Person">
+        <property name="name" value="${person2.name}"/>
+        <property name="age" value="${person2.age}"/>
+        <property name="favoriteAnimal" ref="donkey"/>
+
+    </bean>
+
+</beans>
